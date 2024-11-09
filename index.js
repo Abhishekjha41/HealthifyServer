@@ -6,9 +6,8 @@ import aiInsightsRoute from "./api/ai-powered-insights.js";
 import chatRoute from "./api/chat.js";
 import periodTrackerRoute from "./api/period-tracker.js";
 
-const app = express();
 dotenv.config();
-app.use(cors());
+const app = express();
 
 // Configure CORS to allow requests from specific origin
 app.use(
