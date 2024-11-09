@@ -30,7 +30,7 @@ router.post("/api/chat", async (req, res) => {
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
-
+    
     res.json({
       response: response.text(),
       status: "success",

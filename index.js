@@ -9,6 +9,16 @@ import periodTrackerRoute from "./api/period-tracker.js";
 dotenv.config();
 const app = express();
 
+app.options(
+  "*",
+  cors({
+    origin: "https://healthify-ai.vercel.app",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 // Configure CORS to allow requests from specific origin
 app.use(
   cors({
@@ -20,6 +30,11 @@ app.use(
 );
 
 app.use(express.json());
+
+app.use((req, res, next) => {
+  console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+  next();
+});
 
 // Use the routes
 app.use(feedbackRoute);
