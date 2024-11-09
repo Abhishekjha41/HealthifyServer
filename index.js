@@ -10,13 +10,16 @@ const app = express();
 dotenv.config();
 app.use(cors());
 
+// Configure CORS to allow requests from specific origin
 app.use(
   cors({
-    origin: "https://healthify-ai.vercel.app/", // Specify the frontend URL for deployment
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+    origin: "https://healthify-ai.vercel.app", // Allow your frontend origin
+    methods: ["GET", "POST"], // Allow necessary methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
+    credentials: true, // Allow credentials if needed (e.g., cookies)
   })
 );
+
 app.use(express.json());
 
 // Use the routes
