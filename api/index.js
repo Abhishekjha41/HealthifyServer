@@ -4,7 +4,15 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
 const app = express();
 dotenv.config();
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "https://healthify-ai.vercel.app/", // Allow your frontend origin
+    methods: ["GET", "POST"], // Allow necessary methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+    credentials: true, // Allow credentials if needed (e.g., cookies)
+  })
+);
 app.use(express.json());
 
 // Period Tracker Endpoint
