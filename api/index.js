@@ -5,14 +5,27 @@ import dotenv from "dotenv";
 const app = express();
 dotenv.config();
 
-app.use(
-  cors({
-    origin: "https://healthify-ai.vercel.app/", // Allow your frontend origin
-    methods: ["GET", "POST"], // Allow necessary methods
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
-    credentials: true, // Allow credentials if needed (e.g., cookies)
-  })
-);
+const allowedOrigins = [
+  "https://healthify-ai.vercel.app",
+  "https://healthify-ai.vercel.app/api/ai-powered-insights",
+  "https://healthify-ai.vercel.app/period-tracker",
+  "https://healthify-ai.vercel.app/feedback",
+];
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Check if the request's origin is in the allowedOrigins array or is undefined (for server-to-server calls)
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error("Not allowed by CORS")); // Block the request
+    }
+  },
+  methods: ["GET", "POST"], // Allow necessary methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+  credentials: true, // Allow credentials if needed (e.g., cookies)
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Period Tracker Endpoint
