@@ -141,7 +141,6 @@ app.post("/api/ai-powered-insights", async (req, res) => {
   }
 });
 
-console.log("Abhishek");
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
