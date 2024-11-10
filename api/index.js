@@ -55,7 +55,7 @@ function calculateNextPeriod(lastPeriodDate, cycleLength) {
 }
 
 // Feedback Endpoint
-app.post("/feedback", async (req, res) => {
+app.post("/api/feedback", async (req, res) => {
   try {
     const { rating, comments, suggestions } = req.body;
     // Process the feedback (e.g., store in a database or log it)
