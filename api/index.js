@@ -81,7 +81,7 @@ app.post("/api/feedback", async (req, res) => {
 const genAI = new GoogleGenerativeAI(
   process.env.GOOGLE_API_KEY || "your-api-key-here"
 );
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
 const HEALTH_PROMPT = `
 You are Healthify, a specialized women's health AI assistant. Your responses should be:
 1. Empathetic and supportive
